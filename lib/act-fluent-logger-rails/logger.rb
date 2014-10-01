@@ -88,7 +88,7 @@ module ActFluentLoggerRails
     def flush
       return if @messages.empty?
       messages = if @messages_type == :string
-                   @messages.join("\n")
+                   @messages.map{ |str| str.force_encoding("UTF-8") }.join("\n")
                  else
                    @messages
                  end
